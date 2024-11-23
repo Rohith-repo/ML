@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Form Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            max-width: 300px;
+            margin: auto;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <h2>Simple Form</h2>
+    <form id="simpleForm" onsubmit="return validateForm()">
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="Enter your name">
+        <span id="nameError" class="error"></span>
+        <label for="email">Email:</label>
+        <input type="text" id="email" placeholder="Enter your email">
+        <span id="emailError" class="error"></span>
+        <button type="submit">Submit</button>
+    </form>
+    <script>
+        function validateForm() {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            let isValid = true;
+            document.getElementById('nameError').textContent = '';
+            document.getElementById('emailError').textContent = '';
+            if (name === '') {
+                document.getElementById('nameError').textContent = 'Name is required.';
+                isValid = false;
+            }
+            if (email === '') {
+                document.getElementById('emailError').textContent = 'Email is required.';
+                isValid = false;
+            } else if (!email.includes('@') || !email.includes('.')) {
+                document.getElementById('emailError').textContent = 'Invalid email format.';
+                isValid = false;
+            }
+            return isValid;
+        }
+    </script>
+</body>
+</html>

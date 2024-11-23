@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page with Frames</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        header {
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+        nav {
+            width: 20%;
+            background-color: #f4f4f4;
+            float: left;
+            height: 100vh;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        nav a {
+            display: block;
+            padding: 10px;
+            margin-bottom: 5px;
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            background-color: #ddd;
+        }
+        iframe {
+            float: left;
+            width: 80%;
+            height: 100vh;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>My Website</h1>
+    </header>
+    <nav>
+        <a href="#home" onclick="loadContent('home')">Home</a>
+        <a href="#about" onclick="loadContent('about')">About Us</a>
+        <a href="#services" onclick="loadContent('services')">Services</a>
+        <a href="#contact" onclick="loadContent('contact')">Contact</a>
+    </nav>
+    <iframe id="contentFrame"></iframe>
+    <script>
+        const content = {
+            home: `
+                <h2>Welcome to Our Website</h2>
+                <p>This is the home page. Use the menu to navigate through the website.</p>
+            `,
+            about: `
+                <h2>About Us</h2>
+                <p>We are a leading company providing top-notch services in various domains.</p>
+            `,
+            services: `
+                <h2>Our Services</h2>
+                <ul>
+                    <li>Service 1</li>
+                    <li>Service 2</li>
+                    <li>Service 3</li>
+                </ul>
+            `,
+            contact: `
+                <h2>Contact Us</h2>
+                <p>Feel free to reach out via email at contact@company.com.</p>
+            `
+        };
+        document.getElementById('contentFrame').srcdoc = content.home;
+        function loadContent(section) {
+            const frame = document.getElementById('contentFrame');
+            frame.srcdoc = content[section] || '<h2>Page not found</h2>';
+        }
+    </script>
+</body>
+</html>
